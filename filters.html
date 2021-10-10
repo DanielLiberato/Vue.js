@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Filters no Vue js</title>
+        <style>
+            .active{ background: green;}
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1>{{ title }}</h1>
+            <ul>
+                <li v-for="task in tasks" :class="{active: task.completed}">
+                    {{ task.id }} - {{ task.name | toUppercase }} - {{ task.name | toLowerCase }}
+                </li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            //filtro global ou dentro do elemento
+            Vue.filter('toLowerCase', function (val) {
+                return val.toLowerCase();
+            })
+
+            new Vue({
+                el: '#app',
+                data: {
+                    title: 'Lista de Tarefas',
+                    tasks: [
+                        {
+                            id: 1,
+                            name: 'lavar a louça',
+                            completed: true,
+                        },
+                        {
+                            id: 2,
+                            name: 'lavar o carro',
+                            completed: false,
+                        },
+                        {
+                            id: 3,
+                            name: 'lavar o banheiro',
+                            completed: false,
+                        },
+                        {
+                            id: 4,
+                            name: 'lavar a cozinha',
+                            completed: true,
+                        },
+                        {
+                            id: 5,
+                            name: 'lavar a moto',
+                            completed: false,
+                        },
+                        {
+                            id: 6,
+                            name: 'lavar a roupa',
+                            completed: false,
+                        },
+                    ]
+                },
+                filters: {
+                    toUppercase (val) {
+                        return val.toUpperCase();
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>
