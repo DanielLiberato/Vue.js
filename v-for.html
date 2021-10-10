@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>V-for no Vue js</title>
+        <style>
+            .active{ background: green;}
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <ul>
+                <li v-for="i in 20">{{ i }}</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li v-for="product in products">{{ product }}</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li v-for="taskLista in tasks">{{ taskLista.id }} - {{ taskLista.name }}</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li v-for="(taskLista, index) in tasks">{{ index }} -> {{ taskLista.id }} - {{ taskLista.name }}</li>
+            </ul>
+
+            <hr>
+
+            <ul>
+                <li v-for="(taskLista, index) in tasks" :class="{active: taskLista.isActive}">{{ index }} -> {{ taskLista.id }} - {{ taskLista.name }}</li>
+            </ul>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                   products: [
+                       'Tv',
+                       'Geladeira',
+                       'Microondas',
+                       'Rádio',
+                       'Bolsa',
+                       'Tênis',
+                       'etc...'
+                   ],
+                   tasks: [
+                       {
+                           id: 1,
+                           name: 'lavar a louça',
+                           isActive: true,
+                       },
+                       {
+                           id: 2,
+                           name: 'lavar o carro',
+                           isActive: false,
+                       },
+                       {
+                           id: 3,
+                           name: 'lavar o banheiro',
+                           isActive: false,
+                       },
+                       {
+                           id: 4,
+                           name: 'lavar a cozinha',
+                           isActive: true,
+                       },
+                       {
+                           id: 5,
+                           name: 'lavar a moto',
+                           isActive: false,
+                       },
+                       {
+                           id: 6,
+                           name: 'lavar a roupa',
+                           isActive: false,
+                       },
+                   ]
+                },
+            })
+        </script>
+    </body>
+</html>
